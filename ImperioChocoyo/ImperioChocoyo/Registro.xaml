@@ -50,7 +50,7 @@
                         </VerticalStackLayout>
 
                         <!-- Campos en Grid 2 columnas -->
-                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                               ColumnSpacing="18" RowSpacing="16">
 
                             <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
@@ -62,7 +62,7 @@
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
                                 <Label Text="Capacidad de pasajeros *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtPasajeros" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 45" />
+                                    <Entry x:Name="TxtCapacidad" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 45" />
                                 </Border>
                             </VerticalStackLayout>
 
@@ -73,35 +73,6 @@
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
-                                <Label Text="Tipo de combustible *" Style="{StaticResource LabelField}" />
-                                <Border Style="{StaticResource FieldBorder}">
-                                    <Picker x:Name="CmbCombustible" Style="{StaticResource InputPicker}" Title="Seleccionar tipo">
-                                        <Picker.ItemsSource>
-                                            <x:Array Type="{x:Type x:String}">
-                                                <x:String>Diésel</x:String>
-                                                <x:String>Gasolina</x:String>
-                                                <x:String>Gas Natural</x:String>
-                                                <x:String>Eléctrico</x:String>
-                                            </x:Array>
-                                        </Picker.ItemsSource>
-                                    </Picker>
-                                </Border>
-                            </VerticalStackLayout>
-
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
-                                <Label Text="DUI del propietario *" Style="{StaticResource LabelField}" />
-                                <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDui" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="12345678-9" />
-                                </Border>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
-                                <Label Text="Kilometraje actual *" Style="{StaticResource LabelField}" />
-                                <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtKilometraje" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 120000" />
-                                </Border>
-                            </VerticalStackLayout>
-
-                            <VerticalStackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
                                 <Label Text="Año *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Picker x:Name="CmbAno" Style="{StaticResource InputPicker}" Title="Seleccionar año">
@@ -117,14 +88,8 @@
                                     </Picker>
                                 </Border>
                             </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="6">
-                                <Label Text="Número de motor *" Style="{StaticResource LabelField}" />
-                                <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtMotor" Style="{StaticResource InputEntry}" Placeholder="Ej. MTR-98765" />
-                                </Border>
-                            </VerticalStackLayout>
 
-                            <VerticalStackLayout Grid.Row="4" Grid.Column="0" Spacing="6">
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
                                 <Label Text="Color *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Picker x:Name="CmbColor" Style="{StaticResource InputPicker}" Title="Seleccionar color">
@@ -140,7 +105,7 @@
                                     </Picker>
                                 </Border>
                             </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="4" Grid.Column="1" Spacing="6">
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
                                 <Label Text="Categoría *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Picker x:Name="CmbCategoria" Style="{StaticResource InputPicker}" Title="Seleccionar categoría">
@@ -150,21 +115,23 @@
                                                 <x:String>Interurbano</x:String>
                                                 <x:String>Microbús</x:String>
                                                 <x:String>Turismo</x:String>
+                                                <x:String>Turístico</x:String>
                                             </x:Array>
                                         </Picker.ItemsSource>
                                     </Picker>
                                 </Border>
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Grid.Row="5" Grid.Column="0" Spacing="6">
+                            <VerticalStackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
                                 <Label Text="Marca *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Picker x:Name="CmbMarca" Style="{StaticResource InputPicker}" Title="Seleccionar marca">
                                         <Picker.ItemsSource>
                                             <x:Array Type="{x:Type x:String}">
-                                                <x:String>Mercedes-Benz</x:String>
-                                                <x:String>Blue Bird</x:String>
+                                                <x:String>Mercedes Benz</x:String>
+                                                <x:String>Hyundai</x:String>
                                                 <x:String>Volvo</x:String>
+                                                <x:String>Blue Bird</x:String>
                                                 <x:String>Scania</x:String>
                                                 <x:String>Toyota</x:String>
                                             </x:Array>
@@ -172,7 +139,7 @@
                                     </Picker>
                                 </Border>
                             </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="5" Grid.Column="1" Spacing="6">
+                            <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="6">
                                 <Label Text="Estado *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Picker x:Name="CmbEstado" Style="{StaticResource InputPicker}" Title="Seleccionar estado">
@@ -187,16 +154,18 @@
                                 </Border>
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Grid.Row="6" Grid.Column="0" Spacing="6">
+                            <VerticalStackLayout Grid.Row="4" Grid.Column="0" Spacing="6">
                                 <Label Text="Modelo *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
                                     <Entry x:Name="TxtModelo" Style="{StaticResource InputEntry}" Placeholder="Ej. OF 1721" />
                                 </Border>
                             </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="6" Grid.Column="1" Spacing="6">
-                                <Label Text="Ruta *" Style="{StaticResource LabelField}" />
+                            <VerticalStackLayout Grid.Row="4" Grid.Column="1" Spacing="6">
+                                <Label Text="Fecha de adquisición *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtRuta" Style="{StaticResource InputEntry}" Placeholder="Ej. Ruta 201" />
+                                    <DatePicker x:Name="DpFecha" Format="dd/MM/yyyy"
+                                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource TextPrimary}}"
+                                                FontFamily="PoppinsRegular" FontSize="15" HeightRequest="48" />
                                 </Border>
                             </VerticalStackLayout>
 

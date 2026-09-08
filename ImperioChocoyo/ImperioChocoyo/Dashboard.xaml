@@ -101,6 +101,23 @@
                         </Border>
                     </Grid>
 
+                    <!-- Módulos del sistema -->
+                    <Border Style="{StaticResource CardStyle}" StrokeShape="RoundRectangle 22" Padding="22">
+                        <VerticalStackLayout Spacing="14">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Módulos del sistema" Style="{StaticResource LabelHeader}" FontSize="17" />
+                                <Label Text="Gestiona operadores, rutas, viajes, documentos e historial" Style="{StaticResource LabelMuted}" FontSize="12" />
+                            </VerticalStackLayout>
+                            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto" ColumnSpacing="12" RowSpacing="12">
+                                <Button Grid.Row="0" Grid.Column="0" Text="🧑🏼‍✈️  Operadores" Clicked="OnOperadoresClicked" Style="{StaticResource BtnOutline}" />
+                                <Button Grid.Row="0" Grid.Column="1" Text="🛣️  Rutas" Clicked="OnRutasClicked" Style="{StaticResource BtnOutline}" />
+                                <Button Grid.Row="0" Grid.Column="2" Text="🚏  Viajes" Clicked="OnViajesClicked" Style="{StaticResource BtnOutline}" />
+                                <Button Grid.Row="1" Grid.Column="0" Text="📄  Documentos" Clicked="OnDocumentosClicked" Style="{StaticResource BtnOutline}" />
+                                <Button Grid.Row="1" Grid.Column="1" Text="📋  Historial" Clicked="OnHistorialClicked" Style="{StaticResource BtnOutline}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
                     <!-- Tabla de autobuses -->
                     <Border Style="{StaticResource CardStyle}" StrokeShape="RoundRectangle 22" Padding="22">
                         <VerticalStackLayout Spacing="14">
@@ -128,7 +145,7 @@
                                 <Label Grid.Column="4" Text="ACCIONES" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" HorizontalTextAlignment="End" />
                             </Grid>
 
-                            <CollectionView x:Name="CvAutobuses" Margin="0">
+                            <CollectionView x:Name="CvAutobuses" Margin="0" MaximumHeightRequest="520">
                                 <CollectionView.EmptyView>
                                     <VerticalStackLayout Padding="24" Spacing="12" HorizontalOptions="Center">
                                         <Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center"
@@ -180,11 +197,13 @@
                                             <HorizontalStackLayout Grid.Column="4" Spacing="8" HorizontalOptions="End" VerticalOptions="Center">
                                                 <Button Text="✏️" Clicked="OnEditarClicked" CommandParameter="{Binding .}"
                                                         Style="{StaticResource BtnIcon}" BackgroundColor="#22FFFFFF"
-                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36" />
+                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36"
+                                                        IsVisible="{x:Static local:Sesion.EsAdmin}" />
                                                 <Button Text="🗑️" Clicked="OnEliminarClicked" CommandParameter="{Binding .}"
                                                         Background="Transparent" TextColor="#F87171"
                                                         FontFamily="PoppinsSemiBold" FontSize="14"
-                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36" Padding="0" />
+                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36" Padding="0"
+                                                        IsVisible="{x:Static local:Sesion.EsAdmin}" />
                                             </HorizontalStackLayout>
                                         </Grid>
                                     </DataTemplate>

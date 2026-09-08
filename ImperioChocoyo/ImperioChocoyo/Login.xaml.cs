@@ -49,6 +49,7 @@ public partial class Login : ContentPage
             {
                 // Evaluar el rol exactamente como aparece en tu tabla ('administrador')
                 bool esAdmin = string.Equals(usuarioEncontrado.Rol, "administrador", StringComparison.OrdinalIgnoreCase);
+                Sesion.EsAdmin = esAdmin;
 
                 this.Window.Page = new NavigationPage(new Dashboard(esAdmin));
             }

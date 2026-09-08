@@ -32,20 +32,19 @@ public partial class Registro : ContentPage
         if (_autobusEdicion == null) return;
 
         TxtPlaca.Text = _autobusEdicion.Placa;
-        TxtPasajeros.Text = _autobusEdicion.Pasajeros.ToString();
+        TxtCapacidad.Text = _autobusEdicion.Capacidad.ToString();
         TxtVin.Text = _autobusEdicion.Vin;
-        TxtDui.Text = _autobusEdicion.DuiPropietario;
-        TxtKilometraje.Text = _autobusEdicion.Kilometraje.ToString();
-        TxtMotor.Text = _autobusEdicion.Motor;
-        TxtModelo.Text = _autobusEdicion.Modelo;
-        TxtRuta.Text = _autobusEdicion.Ruta;
-
-        CmbCombustible.SelectedItem = _autobusEdicion.Combustible;
-        CmbAno.SelectedItem = _autobusEdicion.Ano;
+        CmbAno.SelectedItem = _autobusEdicion.Anio.ToString();
         CmbColor.SelectedItem = _autobusEdicion.Color;
         CmbCategoria.SelectedItem = _autobusEdicion.Categoria;
         CmbMarca.SelectedItem = _autobusEdicion.Marca;
         CmbEstado.SelectedItem = _autobusEdicion.Estado;
+        TxtModelo.Text = _autobusEdicion.Modelo;
+
+        if (_autobusEdicion.FechaAdquisicion != default)
+        {
+            DpFecha.Date = _autobusEdicion.FechaAdquisicion.Date;
+        }
     }
 
     private async void OnRegistrarAutobusClicked(object? sender, EventArgs e)
@@ -56,10 +55,10 @@ public partial class Registro : ContentPage
             return;
         }
 
-        if (!int.TryParse(TxtPasajeros.Text, out int pasajeros) ||
-            !int.TryParse(TxtKilometraje.Text, out int kilometraje))
+        if (!int.TryParse(TxtCapacidad.Text, out int capacidad) ||
+            !int.TryParse(CmbAno.SelectedItem?.ToString(), out int anio))
         {
-            await DisplayAlertAsync("Datos inválidos", "La capacidad de pasajeros y el kilometraje deben ser números.", "Aceptar");
+            await DisplayAlertAsync("Datos inválidos", "La capacidad debe ser un número y debes seleccionar el año.", "Aceptar");
             return;
         }
 
@@ -72,19 +71,15 @@ public partial class Registro : ContentPage
                 var nuevoAutobus = new AutobusModel
                 {
                     Placa = TxtPlaca.Text?.Trim() ?? string.Empty,
-                    Pasajeros = pasajeros,
+                    Capacidad = capacidad,
                     Vin = TxtVin.Text?.Trim() ?? string.Empty,
-                    DuiPropietario = TxtDui.Text?.Trim() ?? string.Empty,
-                    Kilometraje = kilometraje,
-                    Motor = TxtMotor.Text?.Trim() ?? string.Empty,
                     Modelo = TxtModelo.Text?.Trim() ?? string.Empty,
-                    Ruta = TxtRuta.Text?.Trim() ?? string.Empty,
-                    Combustible = CmbCombustible.SelectedItem?.ToString() ?? string.Empty,
-                    Ano = CmbAno.SelectedItem?.ToString() ?? string.Empty,
+                    Anio = anio,
                     Color = CmbColor.SelectedItem?.ToString() ?? string.Empty,
                     Categoria = CmbCategoria.SelectedItem?.ToString() ?? string.Empty,
                     Marca = CmbMarca.SelectedItem?.ToString() ?? string.Empty,
-                    Estado = CmbEstado.SelectedItem?.ToString() ?? string.Empty
+                    Estado = CmbEstado.SelectedItem?.ToString() ?? string.Empty,
+FechaAdquisicion = DpFecha.Date ?? DateTime.Today
                 };
 
                 await SupabaseService.Client.From<AutobusModel>().Insert(nuevoAutobus);
@@ -92,19 +87,15 @@ public partial class Registro : ContentPage
             else
             {
                 _autobusEdicion.Placa = TxtPlaca.Text?.Trim() ?? string.Empty;
-                _autobusEdicion.Pasajeros = pasajeros;
+                _autobusEdicion.Capacidad = capacidad;
                 _autobusEdicion.Vin = TxtVin.Text?.Trim() ?? string.Empty;
-                _autobusEdicion.DuiPropietario = TxtDui.Text?.Trim() ?? string.Empty;
-                _autobusEdicion.Kilometraje = kilometraje;
-                _autobusEdicion.Motor = TxtMotor.Text?.Trim() ?? string.Empty;
                 _autobusEdicion.Modelo = TxtModelo.Text?.Trim() ?? string.Empty;
-                _autobusEdicion.Ruta = TxtRuta.Text?.Trim() ?? string.Empty;
-                _autobusEdicion.Combustible = CmbCombustible.SelectedItem?.ToString() ?? string.Empty;
-                _autobusEdicion.Ano = CmbAno.SelectedItem?.ToString() ?? string.Empty;
+                _autobusEdicion.Anio = anio;
                 _autobusEdicion.Color = CmbColor.SelectedItem?.ToString() ?? string.Empty;
                 _autobusEdicion.Categoria = CmbCategoria.SelectedItem?.ToString() ?? string.Empty;
                 _autobusEdicion.Marca = CmbMarca.SelectedItem?.ToString() ?? string.Empty;
                 _autobusEdicion.Estado = CmbEstado.SelectedItem?.ToString() ?? string.Empty;
+                _autobusEdicion.FechaAdquisicion = DpFecha.Date ?? DateTime.Today;
 
                 await SupabaseService.Client.From<AutobusModel>().Update(_autobusEdicion);
             }
@@ -132,14 +123,9 @@ public partial class Registro : ContentPage
     private bool ValidarCampos()
     {
         return !string.IsNullOrWhiteSpace(TxtPlaca.Text) &&
-               !string.IsNullOrWhiteSpace(TxtPasajeros.Text) &&
+               !string.IsNullOrWhiteSpace(TxtCapacidad.Text) &&
                !string.IsNullOrWhiteSpace(TxtVin.Text) &&
-               !string.IsNullOrWhiteSpace(TxtDui.Text) &&
-               !string.IsNullOrWhiteSpace(TxtKilometraje.Text) &&
-               !string.IsNullOrWhiteSpace(TxtMotor.Text) &&
                !string.IsNullOrWhiteSpace(TxtModelo.Text) &&
-               !string.IsNullOrWhiteSpace(TxtRuta.Text) &&
-               CmbCombustible.SelectedIndex != -1 &&
                CmbAno.SelectedIndex != -1 &&
                CmbColor.SelectedIndex != -1 &&
                CmbCategoria.SelectedIndex != -1 &&

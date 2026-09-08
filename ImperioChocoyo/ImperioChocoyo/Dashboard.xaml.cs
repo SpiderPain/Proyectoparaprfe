@@ -29,7 +29,8 @@ public partial class Dashboard : ContentPage
 
     private void AplicarPermisosPorRol()
     {
-        BtnRegistrarNuevo.IsVisible = EsAdmin;
+        // Secretario puede capturar datos (crear), por eso el botón siempre visible.
+        BtnRegistrarNuevo.IsVisible = true;
     }
 
     private async void CargarDatosSupabase()
@@ -65,6 +66,31 @@ public partial class Dashboard : ContentPage
     private async void OnRegistrarNuevoClicked(object? sender, EventArgs e)
     {
         await Navigation.PushAsync(new Registro());
+    }
+
+    private async void OnOperadoresClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new OperadorLista());
+    }
+
+    private async void OnRutasClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new RutaLista());
+    }
+
+    private async void OnViajesClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ViajeLista());
+    }
+
+    private async void OnDocumentosClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new DocumentoLista());
+    }
+
+    private async void OnHistorialClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HistorialLista());
     }
 
     private async void OnEditarClicked(object? sender, EventArgs e)
