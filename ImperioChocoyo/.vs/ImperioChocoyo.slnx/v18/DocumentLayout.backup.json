@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\crearusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\crearusuario.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\crearusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\crearusuario.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\usuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\usuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\autobusmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\autobusmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\registro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\registro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\supabaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\supabaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\registro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\registro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|c:\\users\\haki\\desktop\\javier\\imperiochocoyo\\imperiochocoyo\\imperiochocoyo\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38E731B9-A84F-00AA-DBD1-E77C87814C50}|ImperioChocoyo\\ImperioChocoyo.csproj|solutionrelative:imperiochocoyo\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CrearUsuario.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\CrearUsuario.xaml.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\CrearUsuario.xaml.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\CrearUsuario.xaml.cs",
+              "RelativeToolTip": "ImperioChocoyo\\CrearUsuario.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAB+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T15:52:21.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuarioModel.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\UsuarioModel.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\UsuarioModel.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\UsuarioModel.cs",
+              "RelativeToolTip": "ImperioChocoyo\\UsuarioModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA5wBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-07T15:53:59.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CrearUsuario.xaml",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\CrearUsuario.xaml",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\CrearUsuario.xaml",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\CrearUsuario.xaml",
+              "RelativeToolTip": "ImperioChocoyo\\CrearUsuario.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-03T15:47:12.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Login.xaml.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Login.xaml.cs",
+              "RelativeToolTip": "ImperioChocoyo\\Login.xaml.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwDQAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T15:34:04.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AutobusModel.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\AutobusModel.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\AutobusModel.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\AutobusModel.cs",
+              "RelativeToolTip": "ImperioChocoyo\\AutobusModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T14:18:38.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SupaBaseService.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\SupaBaseService.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\SupaBaseService.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\SupaBaseService.cs",
+              "RelativeToolTip": "ImperioChocoyo\\SupaBaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-07T15:53:15.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dashboard.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Dashboard.xaml.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Dashboard.xaml.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Dashboard.xaml.cs",
+              "RelativeToolTip": "ImperioChocoyo\\Dashboard.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T14:04:41.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Login.xaml",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Login.xaml",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Login.xaml",
+              "RelativeToolTip": "ImperioChocoyo\\Login.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-03T15:33:03.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Dashboard.xaml",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Dashboard.xaml",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Dashboard.xaml",
+              "RelativeToolTip": "ImperioChocoyo\\Dashboard.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-03T13:53:01.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\App.xaml.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\App.xaml.cs",
+              "RelativeToolTip": "ImperioChocoyo\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T13:20:09.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Registro.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Registro.xaml.cs",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Registro.xaml.cs",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Registro.xaml.cs",
+              "RelativeToolTip": "ImperioChocoyo\\Registro.xaml.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAgwJkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T16:45:13.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Registro.xaml",
+              "DocumentMoniker": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Registro.xaml",
+              "RelativeDocumentMoniker": "ImperioChocoyo\\Registro.xaml",
+              "ToolTip": "C:\\Users\\Haki\\Desktop\\Javier\\IMPERIOCHOCOYO\\ImperioChocoyo\\ImperioChocoyo\\Registro.xaml",
+              "RelativeToolTip": "ImperioChocoyo\\Registro.xaml",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAowCYBAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-02T16:34:41.507Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

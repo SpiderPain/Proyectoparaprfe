@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImperioChocoyo.CrearUsuario"
+             Title="CrearUsuario"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Background="{StaticResource BrushBgPage}" RowDefinitions="Auto, *">
+
+        <!-- Navbar Flotante -->
+        <Border Grid.Row="0" Margin="20,14,20,0"
+                BackgroundColor="#162033B8"
+                Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 18"
+                Padding="16,10">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Border Grid.Column="0" WidthRequest="38" HeightRequest="38"
+                        Background="{StaticResource BrushPrimary}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                    <Label Text="🚌" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+                <Label Grid.Column="1" Text="Imperio Chocoyo" TextColor="White"
+                       FontFamily="PoppinsSemiBold" FontSize="16"
+                       VerticalOptions="Center" Margin="12,0,0,0" />
+                <Button Grid.Column="2" Text="Salir" Clicked="OnSalirClicked" Style="{StaticResource BtnHeader}" />
+            </Grid>
+        </Border>
+
+        <!-- Formulario -->
+        <ScrollView Grid.Row="1" VerticalOptions="Center">
+            <VerticalStackLayout Padding="24,28" HorizontalOptions="Center" MaximumWidthRequest="520" WidthRequest="520">
+
+                <Border x:Name="CardRegistro" Style="{StaticResource CardStyle}"
+                        Opacity="0" TranslationY="28" Padding="34,36"
+                        StrokeShape="RoundRectangle 24">
+                    <VerticalStackLayout Spacing="20">
+
+                        <Border WidthRequest="76" HeightRequest="76" Margin="0,4,0,0"
+                                Background="{StaticResource BrushPrimary}"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 24"
+                                HorizontalOptions="Center"
+                                Shadow="{Shadow Brush=#7C3AED, Offset='0,8', Radius=18, Opacity=0.5}">
+                            <Label Text="👤" FontSize="34" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </Border>
+
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Nuevo usuario" Style="{StaticResource LabelHeader}"
+                                   FontSize="24" HorizontalTextAlignment="Center" />
+                            <Label Text="Crea una cuenta para acceder al sistema"
+                                   Style="{StaticResource LabelSub}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Correo electrónico" Style="{StaticResource LabelField}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="TxtNuevoUsuario" Style="{StaticResource InputEntry}"
+                                       Placeholder="correo del nuevo usuario" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Contraseña" Style="{StaticResource LabelField}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="TxtNuevaPassword" IsPassword="True" Style="{StaticResource InputEntry}"
+                                       Placeholder="Contraseña de acceso" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Tipo de usuario" Style="{StaticResource LabelField}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Picker x:Name="CmbRol" Style="{StaticResource InputPicker}" Title="Selecciona el rol">
+                                    <Picker.Items>
+                                        <x:String>Usuario (Solo Vista)</x:String>
+                                        <x:String>Administrador (Control Total)</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <Button Text="REGISTRAR USUARIO" Clicked="OnRegistrarUsuarioClicked"
+                                Style="{StaticResource BtnPrimary}" Margin="0,10,0,0" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Modal Éxito -->
+        <Grid x:Name="SuccessModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill" Grid.RowSpan="2">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="380"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="14" HorizontalOptions="Center">
+                    <Border WidthRequest="64" HeightRequest="64"
+                            Background="{StaticResource BrushSuccess}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                            HorizontalOptions="Center">
+                        <Label Text="✓" TextColor="White" FontSize="30" FontFamily="PoppinsBold"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <Label Text="Usuario creado" Style="{StaticResource LabelHeader}"
+                           FontSize="18" HorizontalTextAlignment="Center" />
+                    <Label Text="El nuevo usuario fue guardado con éxito." Style="{StaticResource LabelSub}"
+                           HorizontalTextAlignment="Center" />
+                    <Button Text="Aceptar" Clicked="OnCerrarSuccessModalClicked"
+                            Style="{StaticResource BtnPrimary}" WidthRequest="140"
+                            HorizontalOptions="Center" Margin="0,6,0,0" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImperioChocoyo.Registro"
+             Title="Registro"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Background="{StaticResource BrushBgPage}">
+
+        <!-- 1. VISTA PRINCIPAL -->
+        <Grid RowDefinitions="Auto, *">
+
+            <!-- Navbar Flotante -->
+            <Border Grid.Row="0" Margin="20,14,20,0"
+                    BackgroundColor="#162033B8"
+                    Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 18"
+                    Padding="16,10">
+                <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="10" VerticalOptions="Center">
+                        <Border WidthRequest="38" HeightRequest="38"
+                                Background="{StaticResource BrushPrimary}"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                            <Label Text="🚌" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </Border>
+                        <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                            <Label Text="Imperio Chocoyo" TextColor="White" FontFamily="PoppinsSemiBold" FontSize="15" />
+                            <Label Text="Registro de autobús" TextColor="#94A3B8" FontFamily="PoppinsRegular" FontSize="11" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <Button x:Name="ThemeToggleButton" Grid.Column="2" Text="🌙 Modo Oscuro" Clicked="OnThemeToggleClicked"
+                            Style="{StaticResource BtnHeader}" Margin="0,0,8,0" />
+                    <Button Grid.Column="3" Text="Dashboard" Clicked="OnCancelarClicked"
+                            Style="{StaticResource BtnHeader}" Margin="0,0,8,0" />
+                    <Button Grid.Column="4" Text="Salir" Clicked="OnSalirClicked"
+                            Style="{StaticResource BtnHeader}" />
+                </Grid>
+            </Border>
+
+            <!-- Formulario -->
+            <ScrollView Grid.Row="1" Padding="20,18">
+                <Border x:Name="CardRegistro" Style="{StaticResource CardStyle}"
+                        MaximumWidthRequest="960" HorizontalOptions="Center" Padding="30"
+                        Opacity="0" TranslationY="28">
+                    <VerticalStackLayout Spacing="24">
+
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="Registrar nuevo autobús" Style="{StaticResource LabelHeader}"
+                                   FontSize="24" HorizontalTextAlignment="Center" />
+                            <Label Text="Ingresa los detalles del vehículo para agregarlo a la flota"
+                                   Style="{StaticResource LabelSub}" FontSize="13" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+
+                        <!-- Campos en Grid 2 columnas -->
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                              ColumnSpacing="18" RowSpacing="16">
+
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
+                                <Label Text="Placa *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtPlaca" Style="{StaticResource InputEntry}" Placeholder="AB-123-CD" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
+                                <Label Text="Capacidad de pasajeros *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtPasajeros" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 45" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
+                                <Label Text="VIN *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtVin" Style="{StaticResource InputEntry}" Placeholder="1HGBH41JXMN109186" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
+                                <Label Text="Tipo de combustible *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbCombustible" Style="{StaticResource InputPicker}" Title="Seleccionar tipo">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Diésel</x:String>
+                                                <x:String>Gasolina</x:String>
+                                                <x:String>Gas Natural</x:String>
+                                                <x:String>Eléctrico</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
+                                <Label Text="DUI del propietario *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtDui" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="12345678-9" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
+                                <Label Text="Kilometraje actual *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtKilometraje" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 120000" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
+                                <Label Text="Año *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbAno" Style="{StaticResource InputPicker}" Title="Seleccionar año">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>2024</x:String>
+                                                <x:String>2023</x:String>
+                                                <x:String>2022</x:String>
+                                                <x:String>2021</x:String>
+                                                <x:String>2020</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="6">
+                                <Label Text="Número de motor *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtMotor" Style="{StaticResource InputEntry}" Placeholder="Ej. MTR-98765" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="4" Grid.Column="0" Spacing="6">
+                                <Label Text="Color *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbColor" Style="{StaticResource InputPicker}" Title="Seleccionar color">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Blanco</x:String>
+                                                <x:String>Amarillo</x:String>
+                                                <x:String>Azul</x:String>
+                                                <x:String>Rojo</x:String>
+                                                <x:String>Verde</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="4" Grid.Column="1" Spacing="6">
+                                <Label Text="Categoría *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbCategoria" Style="{StaticResource InputPicker}" Title="Seleccionar categoría">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Urbano</x:String>
+                                                <x:String>Interurbano</x:String>
+                                                <x:String>Microbús</x:String>
+                                                <x:String>Turismo</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="5" Grid.Column="0" Spacing="6">
+                                <Label Text="Marca *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbMarca" Style="{StaticResource InputPicker}" Title="Seleccionar marca">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Mercedes-Benz</x:String>
+                                                <x:String>Blue Bird</x:String>
+                                                <x:String>Volvo</x:String>
+                                                <x:String>Scania</x:String>
+                                                <x:String>Toyota</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="5" Grid.Column="1" Spacing="6">
+                                <Label Text="Estado *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Picker x:Name="CmbEstado" Style="{StaticResource InputPicker}" Title="Seleccionar estado">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Activo</x:String>
+                                                <x:String>En Mantenimiento</x:String>
+                                                <x:String>Inactivo</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="6" Grid.Column="0" Spacing="6">
+                                <Label Text="Modelo *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtModelo" Style="{StaticResource InputEntry}" Placeholder="Ej. OF 1721" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Row="6" Grid.Column="1" Spacing="6">
+                                <Label Text="Ruta *" Style="{StaticResource LabelField}" />
+                                <Border Style="{StaticResource FieldBorder}">
+                                    <Entry x:Name="TxtRuta" Style="{StaticResource InputEntry}" Placeholder="Ej. Ruta 201" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                        <!-- Botones inferiores -->
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="12" Margin="0,6,0,0">
+                            <Button Grid.Column="0" Text="CANCELAR" Clicked="OnCancelarClicked"
+                                    Style="{StaticResource BtnOutline}" />
+                            <Button Grid.Column="1" Text="REGISTRAR AUTOBÚS" Clicked="OnRegistrarAutobusClicked"
+                                    Style="{StaticResource BtnPrimary}" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+            </ScrollView>
+        </Grid>
+
+        <!-- 2. MODAL CANCELAR REGISTRO -->
+        <Grid x:Name="CancelModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="420"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="32,28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                    <Border WidthRequest="60" HeightRequest="60"
+                            Background="{StaticResource BrushWarning}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                            HorizontalOptions="Center">
+                        <Label Text="⚠️" FontSize="26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="¿Cancelar registro?" Style="{StaticResource LabelHeader}"
+                               FontSize="20" HorizontalTextAlignment="Center" />
+                        <Label Text="Los datos ingresados no se guardarán. ¿Estás seguro?"
+                               Style="{StaticResource LabelSub}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="12" Margin="0,6,0,0">
+                        <Button Grid.Column="0" Text="No, continuar" Clicked="OnNoContinuarClicked"
+                                Style="{StaticResource BtnOutline}" />
+                        <Button Grid.Column="1" Text="Sí, cancelar" Clicked="OnSiCancelarClicked"
+                                Style="{StaticResource BtnDanger}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- 3. MODAL CERRAR SESIÓN -->
+        <Grid x:Name="LogoutModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="380"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="32,28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                    <Border WidthRequest="52" HeightRequest="52"
+                            Background="{StaticResource BrushPrimary}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 18"
+                            HorizontalOptions="Center">
+                        <Label Text="⤶" FontSize="22" FontFamily="PoppinsBold" TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" Rotation="180" />
+                    </Border>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="¿Seguro que quieres salir?" Style="{StaticResource LabelHeader}"
+                               FontSize="20" HorizontalTextAlignment="Center" />
+                        <Label Text="Tu sesión será cerrada." Style="{StaticResource LabelSub}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="12" Margin="0,6,0,0">
+                        <Button Grid.Column="0" Text="No" Clicked="OnNoSalirClicked"
+                                Style="{StaticResource BtnOutline}" />
+                        <Button Grid.Column="1" Text="Sí, salir" Clicked="OnSiSalirClicked"
+                                Style="{StaticResource BtnDanger}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- 4. MODAL REGISTRO EXITOSO -->
+        <Grid x:Name="SuccessModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="420"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="32,28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                    <Border WidthRequest="60" HeightRequest="60"
+                            Background="{StaticResource BrushSuccess}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                            HorizontalOptions="Center">
+                        <Label Text="✓" TextColor="White" FontSize="28" FontFamily="PoppinsBold"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="¡Registro exitoso!" Style="{StaticResource LabelHeader}"
+                               FontSize="22" HorizontalTextAlignment="Center" />
+                        <Label Text="El autobús ha sido registrado correctamente en el sistema."
+                               Style="{StaticResource LabelSub}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                    <Button Text="Aceptar" Clicked="OnAceptarModalClicked"
+                            Style="{StaticResource BtnSuccess}" Margin="0,6,0,0" HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </Grid>
+</ContentPage>

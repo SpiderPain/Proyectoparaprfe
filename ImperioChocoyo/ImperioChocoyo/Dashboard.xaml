@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ImperioChocoyo"
+             x:Class="ImperioChocoyo.Dashboard"
+             Title="Dashboard"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Background="{StaticResource BrushBgPage}" RowDefinitions="Auto, *">
+
+        <!-- Navbar Flotante -->
+        <Border Grid.Row="0" Margin="20,14,20,0"
+                BackgroundColor="#162033B8"
+                Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 18"
+                Padding="16,10">
+            <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                <HorizontalStackLayout Grid.Column="0" Spacing="10" VerticalOptions="Center">
+                    <Border WidthRequest="38" HeightRequest="38"
+                            Background="{StaticResource BrushPrimary}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                        <Label Text="🚌" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                        <Label Text="Imperio Chocoyo" TextColor="White" FontFamily="PoppinsSemiBold" FontSize="15" />
+                        <Label Text="Panel de flota" TextColor="#94A3B8" FontFamily="PoppinsRegular" FontSize="11" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <Button x:Name="ThemeToggleButton" Grid.Column="2" Text="🌙" Clicked="OnThemeToggleClicked"
+                        Style="{StaticResource BtnHeader}" Margin="0,0,8,0" WidthRequest="44" />
+                <Button Grid.Column="3" Text="Salir" Clicked="OnSalirClicked" Style="{StaticResource BtnHeader}" />
+            </Grid>
+        </Border>
+
+        <!-- Contenido -->
+        <Grid Grid.Row="1" MaximumWidthRequest="1100" HorizontalOptions="Center" Margin="20,18">
+            <ScrollView Padding="0,0,0,90">
+                <VerticalStackLayout x:Name="DashContent" Spacing="20">
+
+                    <!-- Encabezado de sección -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Resumen de la flota" Style="{StaticResource LabelHeader}" FontSize="26" />
+                        <Label Text="Estado general y control de los autobuses en tiempo real" Style="{StaticResource LabelSub}" FontSize="14" />
+                    </VerticalStackLayout>
+
+                    <!-- KPIs -->
+                    <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="14">
+                        <Border Style="{StaticResource StatCard}" StrokeShape="RoundRectangle 18">
+                            <HorizontalStackLayout Spacing="12">
+                                <Border WidthRequest="46" HeightRequest="46" VerticalOptions="Center"
+                                        Background="{StaticResource BrushPrimary}"
+                                        StrokeThickness="0" StrokeShape="RoundRectangle 14">
+                                    <Label Text="🚌" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                                <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                                    <Label x:Name="LblTotal" Text="0" Style="{StaticResource LabelValue}" FontSize="24" />
+                                    <Label Text="Total" Style="{StaticResource LabelMuted}" FontSize="11" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Grid.Column="1" Style="{StaticResource StatCard}" StrokeShape="RoundRectangle 18">
+                            <HorizontalStackLayout Spacing="12">
+                                <Border WidthRequest="46" HeightRequest="46" VerticalOptions="Center"
+                                        Background="{StaticResource BrushSuccess}"
+                                        StrokeThickness="0" StrokeShape="RoundRectangle 14">
+                                    <Label Text="✓" TextColor="White" FontSize="20" FontFamily="PoppinsBold"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                                <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                                    <Label x:Name="LblActivos" Text="0" Style="{StaticResource LabelValue}" FontSize="24" TextColor="#22C55E" />
+                                    <Label Text="Activos" Style="{StaticResource LabelMuted}" FontSize="11" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Grid.Column="2" Style="{StaticResource StatCard}" StrokeShape="RoundRectangle 18">
+                            <HorizontalStackLayout Spacing="12">
+                                <Border WidthRequest="46" HeightRequest="46" VerticalOptions="Center"
+                                        Background="{StaticResource BrushWarning}"
+                                        StrokeThickness="0" StrokeShape="RoundRectangle 14">
+                                    <Label Text="🔧" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                                <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                                    <Label x:Name="LblMantenimiento" Text="0" Style="{StaticResource LabelValue}" FontSize="24" TextColor="#F59E0B" />
+                                    <Label Text="Mantenimiento" Style="{StaticResource LabelMuted}" FontSize="11" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Grid.Column="3" Style="{StaticResource StatCard}" StrokeShape="RoundRectangle 18">
+                            <HorizontalStackLayout Spacing="12">
+                                <Border WidthRequest="46" HeightRequest="46" VerticalOptions="Center"
+                                        Background="{StaticResource BrushDanger}"
+                                        StrokeThickness="0" StrokeShape="RoundRectangle 14">
+                                    <Label Text="⛔" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                                <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                                    <Label x:Name="LblInactivos" Text="0" Style="{StaticResource LabelValue}" FontSize="24" TextColor="#EF4444" />
+                                    <Label Text="Inactivos" Style="{StaticResource LabelMuted}" FontSize="11" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </Grid>
+
+                    <!-- Tabla de autobuses -->
+                    <Border Style="{StaticResource CardStyle}" StrokeShape="RoundRectangle 22" Padding="22">
+                        <VerticalStackLayout Spacing="14">
+
+                            <Grid ColumnDefinitions="*, Auto">
+                                <VerticalStackLayout Spacing="2">
+                                    <Label Text="Autobuses registrados" Style="{StaticResource LabelHeader}" FontSize="17" />
+                                    <Label Text="Flota completa de Imperio Chocoyo" Style="{StaticResource LabelMuted}" FontSize="12" />
+                                </VerticalStackLayout>
+                                <Border Grid.Column="1" BackgroundColor="#22FFFFFF"
+                                        Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 14"
+                                        Padding="12,6" VerticalOptions="Center">
+                                    <Label x:Name="LblConteo" Text="0" TextColor="White" FontFamily="PoppinsSemiBold" FontSize="13" />
+                                </Border>
+                            </Grid>
+
+                            <!-- Encabezado tabla -->
+                            <Grid ColumnDefinitions="1.2*, *, *, *, 104"
+                                  BackgroundColor="{AppThemeBinding Light=#F1F5F9, Dark=#101A2E}"
+                                  Padding="14,10" Margin="0,2,0,0">
+                                <Label Grid.Column="0" Text="PLACA" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" />
+                                <Label Grid.Column="1" Text="VEHÍCULO" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" />
+                                <Label Grid.Column="2" Text="CATEGORÍA" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" />
+                                <Label Grid.Column="3" Text="ESTADO" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" />
+                                <Label Grid.Column="4" Text="ACCIONES" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" HorizontalTextAlignment="End" />
+                            </Grid>
+
+                            <CollectionView x:Name="CvAutobuses" Margin="0">
+                                <CollectionView.EmptyView>
+                                    <VerticalStackLayout Padding="24" Spacing="12" HorizontalOptions="Center">
+                                        <Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center"
+                                                BackgroundColor="{AppThemeBinding Light=#F1F5F9, Dark=#101A2E}"
+                                                StrokeThickness="0" StrokeShape="RoundRectangle 20">
+                                            <Label Text="🚌" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        </Border>
+                                        <Label Text="Aún no hay autobuses registrados" Style="{StaticResource LabelHeader}"
+                                               FontSize="15" HorizontalTextAlignment="Center" />
+                                        <Label Text="Úsalo para añadir el primer vehículo a la flota"
+                                               Style="{StaticResource LabelMuted}" HorizontalTextAlignment="Center" />
+                                    </VerticalStackLayout>
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="local:AutobusModel">
+                                        <Grid ColumnDefinitions="1.2*, *, *, *, 104" Padding="14,12" Margin="0,2,0,2">
+                                            <Label Grid.Column="0" Text="{Binding Placa}"
+                                                   FontFamily="PoppinsSemiBold" FontSize="14"
+                                                   TextColor="{AppThemeBinding Light=#0F172A, Dark={StaticResource TextPrimary}}"
+                                                   VerticalOptions="Center" />
+                                            <Label Grid.Column="1" VerticalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} · {1}">
+                                                        <Binding Path="Marca" />
+                                                        <Binding Path="Modelo" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2" Text="{Binding Categoria}"
+                                                   Style="{StaticResource LabelMuted}" VerticalOptions="Center" />
+                                            <Border Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"
+                                                    StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                                                    Padding="12,5">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Background" Value="{StaticResource BrushSuccess}" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Border" Binding="{Binding Estado}" Value="En Mantenimiento">
+                                                                <Setter Property="Background" Value="{StaticResource BrushWarning}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Border" Binding="{Binding Estado}" Value="Inactivo">
+                                                                <Setter Property="Background" Value="{StaticResource BrushDanger}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Label Text="{Binding Estado}" TextColor="White" FontSize="11" FontFamily="PoppinsSemiBold" />
+                                            </Border>
+                                            <HorizontalStackLayout Grid.Column="4" Spacing="8" HorizontalOptions="End" VerticalOptions="Center">
+                                                <Button Text="✏️" Clicked="OnEditarClicked" CommandParameter="{Binding .}"
+                                                        Style="{StaticResource BtnIcon}" BackgroundColor="#22FFFFFF"
+                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36" />
+                                                <Button Text="🗑️" Clicked="OnEliminarClicked" CommandParameter="{Binding .}"
+                                                        Background="Transparent" TextColor="#F87171"
+                                                        FontFamily="PoppinsSemiBold" FontSize="14"
+                                                        CornerRadius="12" HeightRequest="36" WidthRequest="36" Padding="0" />
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <!-- Botón flotante -->
+            <Button x:Name="BtnRegistrarNuevo" Text="+  Nuevo Autobús"
+                    Clicked="OnRegistrarNuevoClicked"
+                    Style="{StaticResource BtnSuccess}"
+                    HorizontalOptions="End" VerticalOptions="End"
+                    Margin="0,0,8,8" Padding="22,14" CornerRadius="18"
+                    Shadow="{Shadow Brush=#059669, Offset='0,8', Radius=20, Opacity=0.5}" />
+
+        </Grid>
+
+        <!-- Modal Eliminar -->
+        <Grid x:Name="DeleteModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill" Grid.RowSpan="2">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="400"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="14" HorizontalOptions="Center">
+                    <Border WidthRequest="64" HeightRequest="64"
+                            Background="{StaticResource BrushDanger}"
+                            StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                            HorizontalOptions="Center">
+                        <Label Text="🗑️" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <Label Text="¿Eliminar autobús?" Style="{StaticResource LabelHeader}"
+                           FontSize="19" HorizontalTextAlignment="Center" />
+                    <Label Text="El vehículo se eliminará permanentemente de la base de datos."
+                           Style="{StaticResource LabelSub}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="12" Margin="0,8,0,0">
+                        <Button Grid.Column="0" Text="Cancelar" Clicked="OnCancelarEliminarClicked"
+                                Style="{StaticResource BtnOutline}" />
+                        <Button Grid.Column="1" Text="Eliminar" Clicked="OnConfirmarEliminarClicked"
+                                Style="{StaticResource BtnDanger}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- Modal Salir -->
+        <Grid x:Name="LogoutModal" IsVisible="False" Background="#AA070B14"
+              HorizontalOptions="Fill" VerticalOptions="Fill" Grid.RowSpan="2">
+            <Border Style="{StaticResource CardStyle}" WidthRequest="380"
+                    HorizontalOptions="Center" VerticalOptions="Center" Padding="28"
+                    StrokeShape="RoundRectangle 22">
+                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                    <Label Text="¿Seguro que quieres salir?" Style="{StaticResource LabelHeader}"
+                           FontSize="18" HorizontalTextAlignment="Center" />
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="12" Margin="0,6,0,0">
+                        <Button Grid.Column="0" Text="No" Clicked="OnNoSalirClicked"
+                                Style="{StaticResource BtnOutline}" />
+                        <Button Grid.Column="1" Text="Sí, salir" Clicked="OnSiSalirClicked"
+                                Style="{StaticResource BtnDanger}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </Grid>
+</ContentPage>
