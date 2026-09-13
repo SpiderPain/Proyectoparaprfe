@@ -56,26 +56,26 @@
                             <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
                                 <Label Text="Nombre de la ruta *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtNombre" Style="{StaticResource InputEntry}" Placeholder="Ej. Ruta 101" />
+                                    <Entry x:Name="TxtNombre" MaxLength="50" Style="{StaticResource InputEntry}" Placeholder="Ej. Ruta 101" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
                                 <Label Text="Origen *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtOrigen" Style="{StaticResource InputEntry}" Placeholder="Ej. San Salvador" />
+                                    <Entry x:Name="TxtOrigen" MaxLength="80" Style="{StaticResource InputEntry}" Placeholder="Ej. San Salvador" />
                                 </Border>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
                                 <Label Text="Destino *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDestino" Style="{StaticResource InputEntry}" Placeholder="Ej. Santa Ana" />
+                                    <Entry x:Name="TxtDestino" MaxLength="80" Style="{StaticResource InputEntry}" Placeholder="Ej. Santa Ana" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
                                 <Label Text="Distancia (km)" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDistancia" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 75.5" />
+                                    <Entry x:Name="TxtDistancia" Keyboard="Numeric" MaxLength="10" Style="{StaticResource InputEntry}" Placeholder="Ej. 75.5" />
                                 </Border>
                             </VerticalStackLayout>
 

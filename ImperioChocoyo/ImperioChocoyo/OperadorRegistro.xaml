@@ -56,52 +56,52 @@
                             <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
                                 <Label Text="DUI *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDui" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="12345678-9" />
+                                    <Entry x:Name="TxtDui" Keyboard="Numeric" MaxLength="10" TextChanged="OnDuiTextChanged" Style="{StaticResource InputEntry}" Placeholder="12345678-9" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
                                 <Label Text="Nombre *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtNombre" Style="{StaticResource InputEntry}" Placeholder="Ej. Juan" />
+                                    <Entry x:Name="TxtNombre" MaxLength="60" Style="{StaticResource InputEntry}" Placeholder="Ej. Juan" />
                                 </Border>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
                                 <Label Text="Apellido *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtApellido" Style="{StaticResource InputEntry}" Placeholder="Ej. Pérez" />
+                                    <Entry x:Name="TxtApellido" MaxLength="60" Style="{StaticResource InputEntry}" Placeholder="Ej. Pérez" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
                                 <Label Text="Teléfono" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtTelefono" Keyboard="Telephone" Style="{StaticResource InputEntry}" Placeholder="Ej. 7000-0000" />
+                                    <Entry x:Name="TxtTelefono" Keyboard="Telephone" MaxLength="9" TextChanged="OnTelefonoTextChanged" Style="{StaticResource InputEntry}" Placeholder="Ej. 7000-0000" />
                                 </Border>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
                                 <Label Text="Tipo de licencia" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtTipoLicencia" Style="{StaticResource InputEntry}" Placeholder="Ej. B" />
+                                    <Entry x:Name="TxtTipoLicencia" MaxLength="5" TextTransform="Uppercase" Style="{StaticResource InputEntry}" Placeholder="Ej. B" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
                                 <Label Text="Número de licencia" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtLicenciaNumero" Style="{StaticResource InputEntry}" Placeholder="Ej. LIC-102938" />
+                                    <Entry x:Name="TxtLicenciaNumero" MaxLength="20" TextTransform="Uppercase" Style="{StaticResource InputEntry}" Placeholder="Ej. LIC-102938" />
                                 </Border>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
                                 <Label Text="Dirección" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDireccion" Style="{StaticResource InputEntry}" Placeholder="Ej. Ciudad Delgado, San Salvador" />
+                                    <Entry x:Name="TxtDireccion" MaxLength="120" Style="{StaticResource InputEntry}" Placeholder="Ej. Ciudad Delgado, San Salvador" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="6">
                                 <Label Text="Rol *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtRol" Style="{StaticResource InputEntry}" Placeholder="Ej. Piloto" />
+                                    <Entry x:Name="TxtRol" MaxLength="50" Style="{StaticResource InputEntry}" Placeholder="Ej. Piloto" />
                                 </Border>
                             </VerticalStackLayout>
 

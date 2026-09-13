@@ -81,7 +81,7 @@
                             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
                                 <Label Text="Descripción" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtDescripcion" Style="{StaticResource InputEntry}" Placeholder="Detalle del evento" />
+                                    <Entry x:Name="TxtDescripcion" MaxLength="200" Style="{StaticResource InputEntry}" Placeholder="Detalle del evento" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
@@ -96,13 +96,13 @@
                             <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
                                 <Label Text="Costo" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtCosto" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 150.00" />
+                                    <Entry x:Name="TxtCosto" Keyboard="Numeric" MaxLength="12" Style="{StaticResource InputEntry}" Placeholder="Ej. 150.00" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
                                 <Label Text="Kilometraje" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtKilometraje" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 120000" />
+                                    <Entry x:Name="TxtKilometraje" Keyboard="Numeric" MaxLength="9" Style="{StaticResource InputEntry}" Placeholder="Ej. 120000" />
                                 </Border>
                             </VerticalStackLayout>
 

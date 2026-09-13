@@ -51,7 +51,7 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Correo electrónico" Style="{StaticResource LabelField}" />
                             <Border Style="{StaticResource FieldBorder}">
-                                <Entry x:Name="TxtNuevoUsuario" Style="{StaticResource InputEntry}"
+                                <Entry x:Name="TxtNuevoUsuario" MaxLength="60" Style="{StaticResource InputEntry}"
                                        Placeholder="correo del nuevo usuario" />
                             </Border>
                         </VerticalStackLayout>
@@ -59,7 +59,7 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Contraseña" Style="{StaticResource LabelField}" />
                             <Border Style="{StaticResource FieldBorder}">
-                                <Entry x:Name="TxtNuevaPassword" IsPassword="True" Style="{StaticResource InputEntry}"
+                                <Entry x:Name="TxtNuevaPassword" IsPassword="True" MaxLength="50" Style="{StaticResource InputEntry}"
                                        Placeholder="Contraseña de acceso" />
                             </Border>
                         </VerticalStackLayout>

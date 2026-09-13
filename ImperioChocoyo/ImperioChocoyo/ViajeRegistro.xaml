@@ -78,7 +78,7 @@
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
                                 <Label Text="Observaciones" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtObservaciones" Style="{StaticResource InputEntry}" Placeholder="Ej. Viaje sin novedades" />
+                                    <Entry x:Name="TxtObservaciones" MaxLength="150" Style="{StaticResource InputEntry}" Placeholder="Ej. Viaje sin novedades" />
                                 </Border>
                             </VerticalStackLayout>
 

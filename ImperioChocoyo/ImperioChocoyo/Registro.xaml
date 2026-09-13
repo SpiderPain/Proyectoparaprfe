@@ -58,20 +58,20 @@
                             <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
                                 <Label Text="Placa *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtPlaca" Style="{StaticResource InputEntry}" Placeholder="AB-123-CD" MaxLength="17" />
+                                    <Entry x:Name="TxtPlaca" Style="{StaticResource InputEntry}" Placeholder="AB-123-CD" MaxLength="17" TextTransform="Uppercase" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
                                 <Label Text="Capacidad de pasajeros *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtCapacidad" Keyboard="Numeric" Style="{StaticResource InputEntry}" Placeholder="Ej. 45" />
+                                    <Entry x:Name="TxtCapacidad" Keyboard="Numeric" MaxLength="4" Style="{StaticResource InputEntry}" Placeholder="Ej. 45" />
                                 </Border>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
                                 <Label Text="VIN *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtVin" Style="{StaticResource InputEntry}" Placeholder="1HGBH41JXMN109186" MaxLength="17" />
+                                    <Entry x:Name="TxtVin" Style="{StaticResource InputEntry}" Placeholder="1HGBH41JXMN109186" MaxLength="17" TextTransform="Uppercase" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
@@ -158,7 +158,7 @@
                             <VerticalStackLayout Grid.Row="4" Grid.Column="0" Spacing="6">
                                 <Label Text="Modelo *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtModelo" Style="{StaticResource InputEntry}" Placeholder="Ej. OF 1721" />
+                                    <Entry x:Name="TxtModelo" MaxLength="100" TextTransform="Uppercase" Style="{StaticResource InputEntry}" Placeholder="Ej. OF 1721" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="4" Grid.Column="1" Spacing="6">

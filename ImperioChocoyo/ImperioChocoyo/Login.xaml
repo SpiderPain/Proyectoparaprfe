@@ -53,7 +53,8 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Correo electrónico" Style="{StaticResource LabelField}" />
                             <Border Style="{StaticResource FieldBorder}">
-                                <Entry x:Name="TxtUsuario" Style="{StaticResource InputEntry}"
+                                <Entry x:Name="TxtUsuario" Keyboard="Email" MaxLength="100" ReturnType="Next"
+                                       Style="{StaticResource InputEntry}"
                                        Placeholder="tucorreo@imperiochocoyo.com" />
                             </Border>
                         </VerticalStackLayout>
@@ -62,7 +63,7 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Contraseña" Style="{StaticResource LabelField}" />
                             <Border Style="{StaticResource FieldBorder}">
-                                <Entry x:Name="TxtPassword" IsPassword="True" Style="{StaticResource InputEntry}"
+                                <Entry x:Name="TxtPassword" IsPassword="True" MaxLength="50" Style="{StaticResource InputEntry}"
                                        Placeholder="Tu contraseña" />
                             </Border>
                         </VerticalStackLayout>
@@ -130,14 +131,14 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Correo de administrador" Style="{StaticResource LabelField}" />
                         <Border Style="{StaticResource FieldBorder}">
-                            <Entry x:Name="TxtAdminUsuario" Style="{StaticResource InputEntry}"
+                            <Entry x:Name="TxtAdminUsuario" Keyboard="Email" MaxLength="100" Style="{StaticResource InputEntry}"
                                    Placeholder="correo del administrador" />
                         </Border>
                     </VerticalStackLayout>
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Contraseña de administrador" Style="{StaticResource LabelField}" />
                         <Border Style="{StaticResource FieldBorder}">
-                            <Entry x:Name="TxtAdminPassword" IsPassword="True" Style="{StaticResource InputEntry}"
+                            <Entry x:Name="TxtAdminPassword" IsPassword="True" MaxLength="50" Style="{StaticResource InputEntry}"
                                    Placeholder="contraseña del administrador" />
                         </Border>
                     </VerticalStackLayout>

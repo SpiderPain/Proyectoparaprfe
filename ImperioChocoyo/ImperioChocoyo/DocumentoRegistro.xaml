@@ -82,7 +82,7 @@
                             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
                                 <Label Text="Número *" Style="{StaticResource LabelField}" />
                                 <Border Style="{StaticResource FieldBorder}">
-                                    <Entry x:Name="TxtNumero" Style="{StaticResource InputEntry}" Placeholder="Ej. TC-2024-00123" />
+                                    <Entry x:Name="TxtNumero" MaxLength="50" TextTransform="Uppercase" Style="{StaticResource InputEntry}" Placeholder="Ej. TC-2024-00123" />
                                 </Border>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">

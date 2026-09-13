@@ -192,6 +192,34 @@ public partial class OperadorRegistro : ContentPage
         }
     }
 
+    private void OnDuiTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        var entry = (Entry)sender!;
+        string numeros = new string((e.NewTextValue ?? string.Empty).Where(char.IsDigit).ToArray());
+        if (numeros.Length > 9) numeros = numeros[..9];
+
+        string formateado = numeros.Length <= 8
+            ? numeros
+            : $"{numeros[..8]}-{numeros[8..]}";
+
+        if (!string.Equals(entry.Text, formateado, StringComparison.Ordinal))
+            entry.Text = formateado;
+    }
+
+    private void OnTelefonoTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        var entry = (Entry)sender!;
+        string numeros = new string((e.NewTextValue ?? string.Empty).Where(char.IsDigit).ToArray());
+        if (numeros.Length > 8) numeros = numeros[..8];
+
+        string formateado = numeros.Length <= 4
+            ? numeros
+            : $"{numeros[..4]}-{numeros[4..]}";
+
+        if (!string.Equals(entry.Text, formateado, StringComparison.Ordinal))
+            entry.Text = formateado;
+    }
+
     private bool ValidarCampos()
     {
         return !string.IsNullOrWhiteSpace(TxtDui.Text) &&
