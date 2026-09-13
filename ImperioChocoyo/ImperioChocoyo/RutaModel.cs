@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Postgrest.Attributes;
 using Postgrest.Models;
 
@@ -21,5 +22,6 @@ public class RutaModel : BaseModel
     [Column("distancia")]
     public decimal? Distancia { get; set; }
 
+    [JsonIgnore]
     public string RutaLabel => $"{Nombre} ({Origen} → {Destino})";
 }

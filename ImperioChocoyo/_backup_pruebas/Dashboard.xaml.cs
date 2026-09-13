@@ -58,9 +58,9 @@ public partial class Dashboard : ContentPage
     {
         LblTotal.Text = ListaAutobuses.Count.ToString();
         LblConteo.Text = ListaAutobuses.Count.ToString();
-        LblActivos.Text = ListaAutobuses.Count(a => string.Equals(a.Estado, "activo", StringComparison.OrdinalIgnoreCase)).ToString();
-        LblMantenimiento.Text = ListaAutobuses.Count(a => string.Equals(a.Estado, "reparacion", StringComparison.OrdinalIgnoreCase)).ToString();
-        LblInactivos.Text = ListaAutobuses.Count(a => string.Equals(a.Estado, "inactivo", StringComparison.OrdinalIgnoreCase)).ToString();
+        LblActivos.Text = ListaAutobuses.Count(a => a.Estado == "Activo").ToString();
+        LblMantenimiento.Text = ListaAutobuses.Count(a => a.Estado == "En Mantenimiento").ToString();
+        LblInactivos.Text = ListaAutobuses.Count(a => a.Estado == "Inactivo").ToString();
     }
 
     private async void OnRegistrarNuevoClicked(object? sender, EventArgs e)
@@ -118,44 +118,10 @@ public partial class Dashboard : ContentPage
             try
             {
                 await SupabaseService.InitializeAsync();
-
-                var documentos = await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client
-                        .From<DocumentoModel>()
-                        .Where(x => x.IdAutobus == _autobusAEliminar.Id)
-                        .Get());
-
-                var historiales = await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client
-                        .From<HistorialModel>()
-                        .Where(x => x.IdAutobus == _autobusAEliminar.Id)
-                        .Get());
-
-                var viajes = await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client
-                        .From<RegistroViajeModel>()
-                        .Where(x => x.IdAutobus == _autobusAEliminar.Id)
-                        .Get());
-
-                var dependencias = (documentos.Models.Count, historiales.Models.Count, viajes.Models.Count);
-
-                if (dependencias.Item1 + dependencias.Item2 + dependencias.Item3 > 0)
-                {
-                    await DisplayAlertAsync("No se puede eliminar",
-                        $"El autobús {_autobusAEliminar.Placa} tiene registros asociados:\n\n" +
-                        $"- Documentos: {dependencias.Item1}\n" +
-                        $"- Historial: {dependencias.Item2}\n" +
-                        $"- Viajes: {dependencias.Item3}\n\n" +
-                        "Elimina primero esos registros para poder borrar el autobús.",
-                        "Aceptar");
-                    return;
-                }
-
-                await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client
-                        .From<AutobusModel>()
-                        .Where(x => x.Id == _autobusAEliminar.Id)
-                        .Delete());
+                await SupabaseService.Client
+                    .From<AutobusModel>()
+                    .Where(x => x.Id == _autobusAEliminar.Id)
+                    .Delete();
 
                 ListaAutobuses.Remove(_autobusAEliminar);
             }
@@ -188,7 +154,7 @@ public partial class Dashboard : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Modo Claro" : "Modo Oscuro";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
         }
     }
 
@@ -197,10 +163,5 @@ public partial class Dashboard : ContentPage
     private void OnSiSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
-    }
-
-    private void OnCerrarSesionClicked(object? sender, EventArgs e)
-    {
-        this.Window.Page = new NavigationPage(new Login());
     }
 }

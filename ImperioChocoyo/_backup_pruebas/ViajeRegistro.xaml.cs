@@ -15,98 +15,13 @@ public partial class ViajeRegistro : ContentPage
         UpdateThemeButtonText();
     }
 
-    protected override void OnSizeAllocated(double width, double height)
-    {
-        base.OnSizeAllocated(width, height);
-        AplicarDiseñoResponsivo(width);
-    }
-
-    private void AplicarDiseñoResponsivo(double width)
-    {
-        if (FieldGrid == null || FieldGrid.Children.Count == 0) return;
-
-        bool compacto = width < 700;
-        var campos = FieldGrid.Children.Cast<View>().ToList();
-
-        int totalFilas = RenderingFilas(campos, compacto);
-        FieldGrid.ColumnDefinitions.Clear();
-        for (int c = 0; c < (compacto ? 1 : 2); c++)
-        {
-            FieldGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-        }
-        FieldGrid.RowDefinitions.Clear();
-        for (int r = 0; r < totalFilas; r++)
-        {
-            FieldGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
-        }
-
-        int fila = 0;
-        int col = 0;
-        for (int i = 0; i < campos.Count; i++)
-        {
-            bool esNota = EsNota(campos[i]);
-            if (compacto)
-            {
-                Grid.SetRow(campos[i], i);
-                Grid.SetColumn(campos[i], 0);
-                Grid.SetColumnSpan(campos[i], 1);
-                continue;
-            }
-
-            if (esNota)
-            {
-                Grid.SetRow(campos[i], fila);
-                Grid.SetColumn(campos[i], 0);
-                Grid.SetColumnSpan(campos[i], 2);
-                fila++;
-                col = 0;
-                continue;
-            }
-
-            Grid.SetRow(campos[i], fila);
-            Grid.SetColumn(campos[i], col);
-            Grid.SetColumnSpan(campos[i], 1);
-            col++;
-            if (col == 2)
-            {
-                col = 0;
-                fila++;
-            }
-        }
-
-        FieldGrid.RowSpacing = compacto ? 14 : 18;
-
-        if (CardRegistro != null)
-        {
-            CardRegistro.Padding = compacto ? new Thickness(18, 24) : new Thickness(30, 28);
-        }
-    }
-
-    private static int RenderingFilas(List<View> campos, bool compacto)
-    {
-        if (compacto) return campos.Count;
-        int filas = 0;
-        int col = 0;
-        foreach (var campo in campos)
-        {
-            if (EsNota(campo)) { filas++; col = 0; continue; }
-            col++;
-            if (col == 2) { col = 0; filas++; }
-        }
-        if (col == 1) filas++;
-        return filas;
-    }
-
-    private static bool EsNota(View vista) =>
-        vista is VerticalStackLayout vs && vs.Children.Count == 1 && vs.Children[0] is Label;
-
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         CardRegistro.Opacity = 0;
         CardRegistro.TranslationY = 28;
-        await CardRegistro.FadeToAsync(1, 500, Easing.CubicOut);
-        await CardRegistro.TranslateToAsync(0, 0, 500, Easing.CubicOut);
+        CardRegistro.FadeToAsync(1, 500, Easing.CubicOut);
+        CardRegistro.TranslateToAsync(0, 0, 500, Easing.CubicOut);
 
         if (!_datosCargados)
         {
@@ -183,28 +98,30 @@ public partial class ViajeRegistro : ContentPage
         {
             await SupabaseService.InitializeAsync();
 
-            var datos = new RegistroViajeModel
-            {
-                IdAutobus = ((AutobusModel)CmbAutobus.SelectedItem).Id,
-                IdOperador = ((OperadorModel)CmbOperador.SelectedItem).Id,
-                IdRuta = ((RutaModel)CmbRuta.SelectedItem).Id,
-                FechaHoraSalida = salida,
-                FechaHoraLlegada = llegada,
-                Observaciones = TxtObservaciones.Text?.Trim()
-            };
-
             if (_viajeEdicion == null)
             {
-                await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client.From<RegistroViajeModel>().Insert(datos));
+                var nuevo = new RegistroViajeModel
+                {
+                    IdAutobus = ((AutobusModel)CmbAutobus.SelectedItem).Id,
+                    IdOperador = ((OperadorModel)CmbOperador.SelectedItem).Id,
+                    IdRuta = ((RutaModel)CmbRuta.SelectedItem).Id,
+                    FechaHoraSalida = salida,
+                    FechaHoraLlegada = llegada,
+                    Observaciones = TxtObservaciones.Text?.Trim()
+                };
+
+                await SupabaseService.Client.From<RegistroViajeModel>().Insert(nuevo);
             }
             else
             {
-                await SupabaseService.ReintentarAsync(() =>
-                    SupabaseService.Client
-                        .From<RegistroViajeModel>()
-                        .Where(x => x.Id == _viajeEdicion.Id)
-                        .Update(datos));
+                _viajeEdicion.IdAutobus = ((AutobusModel)CmbAutobus.SelectedItem).Id;
+                _viajeEdicion.IdOperador = ((OperadorModel)CmbOperador.SelectedItem).Id;
+                _viajeEdicion.IdRuta = ((RutaModel)CmbRuta.SelectedItem).Id;
+                _viajeEdicion.FechaHoraSalida = salida;
+                _viajeEdicion.FechaHoraLlegada = llegada;
+                _viajeEdicion.Observaciones = TxtObservaciones.Text?.Trim();
+
+                await SupabaseService.Client.From<RegistroViajeModel>().Update(_viajeEdicion);
             }
 
             SuccessModal.IsVisible = true;
@@ -251,7 +168,7 @@ public partial class ViajeRegistro : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Claro" : "Oscuro";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️" : "🌙";
         }
     }
 
@@ -260,10 +177,5 @@ public partial class ViajeRegistro : ContentPage
     private void OnSiSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
-    }
-
-    private void OnCerrarSesionClicked(object? sender, EventArgs e)
-    {
-        this.Window.Page = new NavigationPage(new Login());
     }
 }

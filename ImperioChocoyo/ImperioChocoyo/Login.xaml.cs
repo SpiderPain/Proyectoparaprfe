@@ -25,6 +25,8 @@ public partial class Login : ContentPage
 
         if (string.IsNullOrEmpty(usuarioInput) || string.IsNullOrEmpty(passwordInput))
         {
+            ErrorModalTitle.Text = "Campos vacíos";
+            ErrorModalMessage.Text = "Debes ingresar tu correo electrónico y contraseña para iniciar sesión.";
             ErrorModal.IsVisible = true;
             return;
         }
@@ -34,10 +36,11 @@ public partial class Login : ContentPage
             await SupabaseService.InitializeAsync();
 
             // Obtener todos los usuarios activos y filtrar en memoria para evitar errores de sintaxis en PostgREST
-            var respuesta = await SupabaseService.Client
-                .From<UsuarioModel>()
-                .Where(x => x.Activo == true)
-                .Get();
+            var respuesta = await SupabaseService.ReintentarAsync(() =>
+                SupabaseService.Client
+                    .From<UsuarioModel>()
+                    .Where(x => x.Activo == true)
+                    .Get());
 
             var usuarioEncontrado = respuesta.Models.FirstOrDefault(u =>
                 (u.Nombre.Equals(usuarioInput, StringComparison.OrdinalIgnoreCase) ||
@@ -55,6 +58,8 @@ public partial class Login : ContentPage
             }
             else
             {
+                ErrorModalTitle.Text = "Credenciales incorrectas";
+                ErrorModalMessage.Text = "El correo o la contraseña que ingresaste no coinciden con ningún usuario activo en el sistema.";
                 ErrorModal.IsVisible = true;
             }
         }
@@ -66,8 +71,63 @@ public partial class Login : ContentPage
 
     private async void OnRegistrarClicked(object? sender, EventArgs e)
     {
-        // Navega a la ventana de registro de nuevo usuario
-        await Navigation.PushAsync(new CrearUsuario());
+        // Gate: solo administradores pueden registrar nuevos usuarios
+        AdminErrorLabel.IsVisible = false;
+        TxtAdminUsuario.Text = string.Empty;
+        TxtAdminPassword.Text = string.Empty;
+        AdminModal.IsVisible = true;
+    }
+
+    private void OnCancelarVerificacionClicked(object? sender, EventArgs e)
+    {
+        AdminModal.IsVisible = false;
+    }
+
+    private async void OnVerificarAdminClicked(object? sender, EventArgs e)
+    {
+        string adminUsuario = TxtAdminUsuario.Text?.Trim() ?? string.Empty;
+        string adminPassword = TxtAdminPassword.Text?.Trim() ?? string.Empty;
+
+        if (string.IsNullOrEmpty(adminUsuario) || string.IsNullOrEmpty(adminPassword))
+        {
+            AdminErrorLabel.Text = "Ingresa tu correo y contraseña de administrador.";
+            AdminErrorLabel.IsVisible = true;
+            return;
+        }
+
+        try
+        {
+            await SupabaseService.InitializeAsync();
+
+            var respuesta = await SupabaseService.ReintentarAsync(() =>
+                SupabaseService.Client
+                    .From<UsuarioModel>()
+                    .Where(x => x.Activo == true)
+                    .Get());
+
+            var adminEncontrado = respuesta.Models.FirstOrDefault(u =>
+                string.Equals(u.Rol, "administrador", StringComparison.OrdinalIgnoreCase) &&
+                (u.Nombre.Equals(adminUsuario, StringComparison.OrdinalIgnoreCase) ||
+                 u.Email.Equals(adminUsuario, StringComparison.OrdinalIgnoreCase)) &&
+                u.Password == adminPassword
+            );
+
+            if (adminEncontrado != null)
+            {
+                AdminModal.IsVisible = false;
+                await Navigation.PushAsync(new CrearUsuario());
+            }
+            else
+            {
+                AdminErrorLabel.Text = "No tienes permisos de administrador para registrar usuarios.";
+                AdminErrorLabel.IsVisible = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            AdminErrorLabel.Text = $"Error de conexión: {ex.Message}";
+            AdminErrorLabel.IsVisible = true;
+        }
     }
 
     private void OnCerrarModalErrorClicked(object? sender, EventArgs e)

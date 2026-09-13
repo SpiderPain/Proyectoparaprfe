@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Postgrest.Attributes;
 using Postgrest.Models;
 
@@ -27,5 +28,6 @@ public class HistorialModel : BaseModel
     [Column("kilometraje")]
     public int? Kilometraje { get; set; }
 
+    [JsonIgnore]
     public string AutobusLabel { get; set; } = string.Empty;
 }

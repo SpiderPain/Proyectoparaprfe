@@ -50,10 +50,11 @@ public class AutobusModel : BaseModel
         if (string.IsNullOrWhiteSpace(estado)) return string.Empty;
 
         var normalizado = estado.Trim();
-        if (string.Equals(normalizado, "activo", StringComparison.OrdinalIgnoreCase)) return "Activo";
-        if (string.Equals(normalizado, "en mantenimiento", StringComparison.OrdinalIgnoreCase)) return "En Mantenimiento";
-        if (string.Equals(normalizado, "inactivo", StringComparison.OrdinalIgnoreCase)) return "Inactivo";
+        if (string.Equals(normalizado, "activo", StringComparison.OrdinalIgnoreCase)) return "activo";
+        if (string.Equals(normalizado, "reparacion", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(normalizado, "en reparación", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(normalizado, "en reparacion", StringComparison.OrdinalIgnoreCase)) return "reparacion";
 
-        return normalizado;
+        return normalizado.ToLowerInvariant();
     }
 }

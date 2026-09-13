@@ -128,12 +128,17 @@ public partial class DocumentoLista : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️" : "🌙";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Claro" : "Oscuro";
         }
     }
 
     private void OnSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
+    }
+
+    private void OnCerrarSesionClicked(object? sender, EventArgs e)
+    {
+        this.Window.Page = new NavigationPage(new Login());
     }
 }

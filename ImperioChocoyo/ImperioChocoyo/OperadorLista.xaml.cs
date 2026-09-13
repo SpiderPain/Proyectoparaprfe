@@ -82,10 +82,26 @@ public partial class OperadorLista : ContentPage
             try
             {
                 await SupabaseService.InitializeAsync();
-                await SupabaseService.Client
-                    .From<OperadorModel>()
-                    .Where(x => x.Id == _operadorAEliminar.Id)
-                    .Delete();
+
+                var viajes = await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client
+                        .From<RegistroViajeModel>()
+                        .Where(x => x.IdOperador == _operadorAEliminar.Id)
+                        .Get());
+
+                if (viajes.Models.Count > 0)
+                {
+                    await DisplayAlertAsync("No se puede eliminar",
+                        $"El operador {_operadorAEliminar.Nombre} {_operadorAEliminar.Apellido} tiene {viajes.Models.Count} viaje(s) asociado(s).\n\nElimina primero esos viajes para poder borrar al operador.",
+                        "Aceptar");
+                    return;
+                }
+
+                await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client
+                        .From<OperadorModel>()
+                        .Where(x => x.Id == _operadorAEliminar.Id)
+                        .Delete());
 
                 ListaOperadores.Remove(_operadorAEliminar);
             }
@@ -123,12 +139,17 @@ public partial class OperadorLista : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️" : "🌙";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Claro" : "Oscuro";
         }
     }
 
     private void OnSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
+    }
+
+    private void OnCerrarSesionClicked(object? sender, EventArgs e)
+    {
+        this.Window.Page = new NavigationPage(new Login());
     }
 }

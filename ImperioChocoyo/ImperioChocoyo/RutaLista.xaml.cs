@@ -82,10 +82,26 @@ public partial class RutaLista : ContentPage
             try
             {
                 await SupabaseService.InitializeAsync();
-                await SupabaseService.Client
-                    .From<RutaModel>()
-                    .Where(x => x.Id == _rutaAEliminar.Id)
-                    .Delete();
+
+                var viajes = await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client
+                        .From<RegistroViajeModel>()
+                        .Where(x => x.IdRuta == _rutaAEliminar.Id)
+                        .Get());
+
+                if (viajes.Models.Count > 0)
+                {
+                    await DisplayAlertAsync("No se puede eliminar",
+                        $"La ruta \"{_rutaAEliminar.Nombre}\" tiene {viajes.Models.Count} viaje(s) asociado(s).\n\nElimina primero esos viajes para poder borrar la ruta.",
+                        "Aceptar");
+                    return;
+                }
+
+                await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client
+                        .From<RutaModel>()
+                        .Where(x => x.Id == _rutaAEliminar.Id)
+                        .Delete());
 
                 ListaRutas.Remove(_rutaAEliminar);
             }
@@ -123,12 +139,17 @@ public partial class RutaLista : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️" : "🌙";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Claro" : "Oscuro";
         }
     }
 
     private void OnSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
+    }
+
+    private void OnCerrarSesionClicked(object? sender, EventArgs e)
+    {
+        this.Window.Page = new NavigationPage(new Login());
     }
 }

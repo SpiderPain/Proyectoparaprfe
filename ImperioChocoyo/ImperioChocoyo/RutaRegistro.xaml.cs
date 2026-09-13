@@ -10,6 +10,91 @@ public partial class RutaRegistro : ContentPage
         UpdateThemeButtonText();
     }
 
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+        AplicarDiseñoResponsivo(width);
+    }
+
+    private void AplicarDiseñoResponsivo(double width)
+    {
+        if (FieldGrid == null || FieldGrid.Children.Count == 0) return;
+
+        bool compacto = width < 700;
+        var campos = FieldGrid.Children.Cast<View>().ToList();
+
+        int totalFilas = RenderingFilas(campos, compacto);
+        FieldGrid.ColumnDefinitions.Clear();
+        for (int c = 0; c < (compacto ? 1 : 2); c++)
+        {
+            FieldGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+        }
+        FieldGrid.RowDefinitions.Clear();
+        for (int r = 0; r < totalFilas; r++)
+        {
+            FieldGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+        }
+
+        int fila = 0;
+        int col = 0;
+        for (int i = 0; i < campos.Count; i++)
+        {
+            bool esNota = EsNota(campos[i]);
+            if (compacto)
+            {
+                Grid.SetRow(campos[i], i);
+                Grid.SetColumn(campos[i], 0);
+                Grid.SetColumnSpan(campos[i], 1);
+                continue;
+            }
+
+            if (esNota)
+            {
+                Grid.SetRow(campos[i], fila);
+                Grid.SetColumn(campos[i], 0);
+                Grid.SetColumnSpan(campos[i], 2);
+                fila++;
+                col = 0;
+                continue;
+            }
+
+            Grid.SetRow(campos[i], fila);
+            Grid.SetColumn(campos[i], col);
+            Grid.SetColumnSpan(campos[i], 1);
+            col++;
+            if (col == 2)
+            {
+                col = 0;
+                fila++;
+            }
+        }
+
+        FieldGrid.RowSpacing = compacto ? 14 : 18;
+
+        if (CardRegistro != null)
+        {
+            CardRegistro.Padding = compacto ? new Thickness(18, 24) : new Thickness(30, 28);
+        }
+    }
+
+    private static int RenderingFilas(List<View> campos, bool compacto)
+    {
+        if (compacto) return campos.Count;
+        int filas = 0;
+        int col = 0;
+        foreach (var campo in campos)
+        {
+            if (EsNota(campo)) { filas++; col = 0; continue; }
+            col++;
+            if (col == 2) { col = 0; filas++; }
+        }
+        if (col == 1) filas++;
+        return filas;
+    }
+
+    private static bool EsNota(View vista) =>
+        vista is VerticalStackLayout vs && vs.Children.Count == 1 && vs.Children[0] is Label;
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -58,33 +143,55 @@ public partial class RutaRegistro : ContentPage
         {
             await SupabaseService.InitializeAsync();
 
+            string nombreRuta = TxtNombre.Text?.Trim() ?? string.Empty;
+
+            var existentes = await SupabaseService.ReintentarAsync(() =>
+                SupabaseService.Client
+                    .From<RutaModel>()
+                    .Where(x => x.Nombre == nombreRuta)
+                    .Get());
+
+            var duplicado = existentes.Models.FirstOrDefault(r =>
+                string.Equals(r.Nombre, nombreRuta, StringComparison.OrdinalIgnoreCase));
+
+            bool esDuplicado = duplicado != null &&
+                (_rutaEdicion == null || duplicado.Id != _rutaEdicion.Id);
+
+            if (esDuplicado)
+            {
+                await DisplayAlertAsync("Ruta ya registrada",
+                    $"Ya existe una ruta con el nombre \"{nombreRuta}\".\nUsa un nombre diferente.",
+                    "Aceptar");
+                return;
+            }
+
+            var datos = new RutaModel
+            {
+                Nombre = nombreRuta,
+                Origen = TxtOrigen.Text?.Trim() ?? string.Empty,
+                Destino = TxtDestino.Text?.Trim() ?? string.Empty,
+                Distancia = distancia
+            };
+
             if (_rutaEdicion == null)
             {
-                var nuevo = new RutaModel
-                {
-                    Nombre = TxtNombre.Text?.Trim() ?? string.Empty,
-                    Origen = TxtOrigen.Text?.Trim() ?? string.Empty,
-                    Destino = TxtDestino.Text?.Trim() ?? string.Empty,
-                    Distancia = distancia
-                };
-
-                await SupabaseService.Client.From<RutaModel>().Insert(nuevo);
+                await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client.From<RutaModel>().Insert(datos));
             }
             else
             {
-                _rutaEdicion.Nombre = TxtNombre.Text?.Trim() ?? string.Empty;
-                _rutaEdicion.Origen = TxtOrigen.Text?.Trim() ?? string.Empty;
-                _rutaEdicion.Destino = TxtDestino.Text?.Trim() ?? string.Empty;
-                _rutaEdicion.Distancia = distancia;
-
-                await SupabaseService.Client.From<RutaModel>().Update(_rutaEdicion);
+                await SupabaseService.ReintentarAsync(() =>
+                    SupabaseService.Client
+                        .From<RutaModel>()
+                        .Where(x => x.Id == _rutaEdicion.Id)
+                        .Update(datos));
             }
 
             SuccessModal.IsVisible = true;
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync("Error", $"No se pudo guardar la ruta: {ex.Message}", "Aceptar");
+            await DisplayAlertAsync("No se pudo guardar", $"{ex.Message}", "Aceptar");
         }
     }
 
@@ -123,7 +230,7 @@ public partial class RutaRegistro : ContentPage
     {
         if (Application.Current != null)
         {
-            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "☀️" : "🌙";
+            ThemeToggleButton.Text = Application.Current.UserAppTheme == AppTheme.Dark ? "Claro" : "Oscuro";
         }
     }
 
@@ -132,5 +239,10 @@ public partial class RutaRegistro : ContentPage
     private void OnSiSalirClicked(object? sender, EventArgs e)
     {
         Application.Current?.CloseWindow(this.Window);
+    }
+
+    private void OnCerrarSesionClicked(object? sender, EventArgs e)
+    {
+        this.Window.Page = new NavigationPage(new Login());
     }
 }

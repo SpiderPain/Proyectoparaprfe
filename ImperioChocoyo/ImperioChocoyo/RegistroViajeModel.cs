@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Postgrest.Attributes;
 using Postgrest.Models;
 
@@ -27,7 +28,10 @@ public class RegistroViajeModel : BaseModel
     [Column("observaciones")]
     public string? Observaciones { get; set; }
 
+    [JsonIgnore]
     public string AutobusLabel { get; set; } = string.Empty;
+    [JsonIgnore]
     public string OperadorLabel { get; set; } = string.Empty;
+    [JsonIgnore]
     public string RutaLabel { get; set; } = string.Empty;
 }

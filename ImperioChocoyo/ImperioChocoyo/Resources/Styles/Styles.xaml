@@ -340,7 +340,8 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderSubtle}}" />
         <Setter Property="StrokeThickness" Value="1" />
         <Setter Property="StrokeShape" Value="RoundRectangle 14" />
-        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="HeightRequest" Value="54" />
+        <Setter Property="Padding" Value="16,0" />
     </Style>
 
     <Style x:Key="InputEntry" TargetType="Entry">
@@ -349,7 +350,6 @@
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource TextMuted}}" />
         <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="15" />
-        <Setter Property="HeightRequest" Value="48" />
         <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
     </Style>
 
@@ -359,7 +359,6 @@
         <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource TextMuted}}" />
         <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="15" />
-        <Setter Property="HeightRequest" Value="48" />
     </Style>
 
     <Style x:Key="LabelHeader" TargetType="Label">

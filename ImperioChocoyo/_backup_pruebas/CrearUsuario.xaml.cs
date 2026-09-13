@@ -26,14 +26,7 @@ public partial class CrearUsuario : ContentPage
 
         if (string.IsNullOrEmpty(nombreInput) || string.IsNullOrEmpty(passwordInput) || string.IsNullOrEmpty(rolSeleccionado))
         {
-            string camposFaltantes = "";
-            if (string.IsNullOrEmpty(nombreInput)) camposFaltantes += "- Correo electrónico\n";
-            if (string.IsNullOrEmpty(passwordInput)) camposFaltantes += "- Contraseña\n";
-            if (string.IsNullOrEmpty(rolSeleccionado)) camposFaltantes += "- Tipo de usuario (rol)\n";
-
-            await DisplayAlertAsync("Campos incompletos", 
-                $"No puedes registrar el usuario porque faltan los siguientes campos:\n\n{camposFaltantes}\nPor favor completa todos los campos obligatorios.", 
-                "Aceptar");
+            await DisplayAlertAsync("Atención", "Por favor completa todos los campos.", "Aceptar");
             return;
         }
 
@@ -42,41 +35,25 @@ public partial class CrearUsuario : ContentPage
             await SupabaseService.InitializeAsync();
 
             string rolGuardar = rolSeleccionado.Contains("Administrador") ? "administrador" : "secretario";
-            string emailNuevo = $"{nombreInput.ToLower().Replace(" ", "")}@imperiochocoyo.com";
-
-            var existentes = await SupabaseService.ReintentarAsync(() =>
-                SupabaseService.Client
-                    .From<UsuarioModel>()
-                    .Where(x => x.Email == emailNuevo || x.Nombre == nombreInput)
-                    .Get());
-
-            if (existentes.Models.Count > 0)
-            {
-                await DisplayAlertAsync("Usuario ya existe",
-                    $"Ya existe un usuario con el nombre \"{nombreInput}\" o el correo {emailNuevo}.\nPor favor elige otro nombre.",
-                    "Aceptar");
-                return;
-            }
 
             var nuevoUsuario = new UsuarioModel
             {
                 Nombre = nombreInput,
                 Apellido = "Registrado",
-                Email = emailNuevo,
+                Email = $"{nombreInput.ToLower().Replace(" ", "")}@imperiochocoyo.com",
                 Password = passwordInput,
                 Rol = rolGuardar,
                 Telefono = "7000-0000",
                 Activo = true
             };
 
-            await SupabaseService.ReintentarAsync(() =>
-                SupabaseService.Client.From<UsuarioModel>().Insert(nuevoUsuario));
+            await SupabaseService.Client.From<UsuarioModel>().Insert(nuevoUsuario);
 
             SuccessModal.IsVisible = true;
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync("Error", $"No se pudo crear el usuario: {ex.Message}", "Aceptar");
+            await DisplayAlertAsync("Error", $"No se pudo crear: {ex.Message}", "Aceptar");
         }
     }
 

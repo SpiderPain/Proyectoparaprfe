@@ -48,6 +48,13 @@
     <Color x:Key="BorderLight">#CBD5E1</Color>
     <Color x:Key="BorderLightSoft">#E2E8F0</Color>
 
+    <!-- Soporte Modo Claro -->
+    <Color x:Key="HeaderBarLight">#2E50D4</Color>
+    <Color x:Key="HeaderBarDark">#1A2740</Color>
+    <Color x:Key="BadgeBgLight">#E2E8F0</Color>
+    <Color x:Key="BadgeBgDark">#24324A</Color>
+    <Color x:Key="ChipBgDark">#22FFFFFF</Color>
+
     <!-- Gradientes -->
     <LinearGradientBrush x:Key="BrushPrimary" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#4F7CFF" Offset="0.0" />
@@ -88,6 +95,11 @@
     <LinearGradientBrush x:Key="BrushBgPage" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#0F172A" Offset="0.0" />
         <GradientStop Color="#0B1220" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="BrushBgLight" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#F4F6FB" Offset="0.0" />
+        <GradientStop Color="#E7ECF5" Offset="1.0" />
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />

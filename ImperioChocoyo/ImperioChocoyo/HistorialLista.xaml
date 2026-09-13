@@ -5,30 +5,32 @@
              x:Class="ImperioChocoyo.HistorialLista"
              Title="Historial"
              NavigationPage.HasNavigationBar="False">
-    <Grid Background="{StaticResource BrushBgPage}" RowDefinitions="Auto, *">
+    <Grid Background="{AppThemeBinding Light={StaticResource BrushBgLight}, Dark={StaticResource BrushBgPage}}" RowDefinitions="Auto, *">
 
         <!-- Navbar Flotante -->
         <Border Grid.Row="0" Margin="20,14,20,0"
-                BackgroundColor="#162033B8"
+                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarLight}, Dark={StaticResource HeaderBarDark}}"
                 Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 18"
                 Padding="16,10">
-            <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto">
+            <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto, Auto">
                 <HorizontalStackLayout Grid.Column="0" Spacing="10" VerticalOptions="Center">
                     <Border WidthRequest="38" HeightRequest="38"
                             Background="{StaticResource BrushPrimary}"
                             StrokeThickness="0" StrokeShape="RoundRectangle 12">
-                        <Label Text="📋" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        <Label Text="H" FontSize="16" TextColor="White" FontFamily="PoppinsSemiBold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     </Border>
                     <VerticalStackLayout Spacing="0" VerticalOptions="Center">
                         <Label Text="Historial" TextColor="White" FontFamily="PoppinsSemiBold" FontSize="15" />
-                        <Label Text="Mantenimientos y eventos" TextColor="#94A3B8" FontFamily="PoppinsRegular" FontSize="11" />
+                        <Label Text="Mantenimientos y eventos" TextColor="{AppThemeBinding Light=#C7D2FE, Dark=#94A3B8}" FontFamily="PoppinsRegular" FontSize="11" />
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
-                <Button x:Name="ThemeToggleButton" Grid.Column="2" Text="🌙" Clicked="OnThemeToggleClicked"
-                        Style="{StaticResource BtnHeader}" Margin="0,0,8,0" WidthRequest="44" />
+                <Button x:Name="ThemeToggleButton" Grid.Column="2" Text="Oscuro" Clicked="OnThemeToggleClicked"
+                        Style="{StaticResource BtnHeader}" Margin="0,0,8,0" />
                 <Button Grid.Column="3" Text="Dashboard" Clicked="OnVolverClicked"
                         Style="{StaticResource BtnHeader}" Margin="0,0,8,0" />
                 <Button Grid.Column="4" Text="Salir" Clicked="OnSalirClicked"
+                        Style="{StaticResource BtnHeader}" Margin="0,0,8,0" />
+                <Button Grid.Column="5" Text="Cerrar sesión" Clicked="OnCerrarSesionClicked"
                         Style="{StaticResource BtnHeader}" />
             </Grid>
         </Border>
@@ -45,17 +47,17 @@
                 <Grid RowDefinitions="Auto, Auto, Auto, *">
                     <Grid Row="0" ColumnDefinitions="*, Auto">
                         <Label Text="Lista de historial" Style="{StaticResource LabelHeader}" FontSize="17" />
-                        <Border Grid.Column="1" BackgroundColor="#22FFFFFF"
-                                Stroke="#2A3A55" StrokeThickness="1" StrokeShape="RoundRectangle 14"
+                        <Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light={StaticResource BadgeBgLight}, Dark={StaticResource BadgeBgDark}}"
+                                Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderSubtle}}" StrokeThickness="1" StrokeShape="RoundRectangle 14"
                                 Padding="12,6" VerticalOptions="Center">
-                            <Label x:Name="LblConteo" Text="0" TextColor="White" FontFamily="PoppinsSemiBold" FontSize="13" />
+                            <Label x:Name="LblConteo" Text="0" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" FontFamily="PoppinsSemiBold" FontSize="13" />
                         </Border>
                     </Grid>
 
                     <Label Grid.Row="1" x:Name="LblError" IsVisible="False" TextColor="#F87171"
                            FontFamily="PoppinsSemiBold" FontSize="13" LineBreakMode="WordWrap" />
 
-                    <Grid Grid.Row="2" ColumnDefinitions="1.3*, 1.2*, 1.5*, 1*, 104"
+                    <Grid Grid.Row="2" ColumnDefinitions="1.3*, 1.2*, 1.5*, 1*, 150"
                           BackgroundColor="{AppThemeBinding Light=#F1F5F9, Dark=#101A2E}"
                           Padding="14,10" Margin="0,2,0,0">
                         <Label Grid.Column="0" Text="AUTOBÚS" Style="{StaticResource LabelMuted}" FontFamily="PoppinsSemiBold" FontSize="11" />
@@ -71,7 +73,7 @@
                                 <Border WidthRequest="64" HeightRequest="64" HorizontalOptions="Center"
                                         BackgroundColor="{AppThemeBinding Light=#F1F5F9, Dark=#101A2E}"
                                         StrokeThickness="0" StrokeShape="RoundRectangle 20">
-                                    <Label Text="📋" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label Text="H" FontSize="24" TextColor="{AppThemeBinding Light=#94A3B8, Dark=White}" FontFamily="PoppinsSemiBold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 </Border>
                                 <Label Text="Aún no hay historial registrado" Style="{StaticResource LabelHeader}"
                                        FontSize="15" HorizontalTextAlignment="Center" />
@@ -81,7 +83,7 @@
                         </CollectionView.EmptyView>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="local:HistorialModel">
-                                <Grid ColumnDefinitions="1.3*, 1.2*, 1.5*, 1*, 104" Padding="14,12" Margin="0,2,0,2">
+                                <Grid ColumnDefinitions="1.3*, 1.2*, 1.5*, 1*, 150" Padding="14,12" Margin="0,2,0,2">
                                     <Label Grid.Column="0" Text="{Binding AutobusLabel}"
                                            FontFamily="PoppinsSemiBold" FontSize="14"
                                            TextColor="{AppThemeBinding Light=#0F172A, Dark={StaticResource TextPrimary}}"
@@ -93,14 +95,16 @@
                                     <Label Grid.Column="3" Text="{Binding Costo, StringFormat='{}{0:$#,##0.00}'}"
                                            Style="{StaticResource LabelMuted}" VerticalOptions="Center" />
                                     <HorizontalStackLayout Grid.Column="4" Spacing="8" HorizontalOptions="End" VerticalOptions="Center">
-                                        <Button Text="✏️" Clicked="OnEditarClicked" CommandParameter="{Binding .}"
-                                                Style="{StaticResource BtnIcon}" BackgroundColor="#22FFFFFF"
-                                                CornerRadius="12" HeightRequest="36" WidthRequest="36"
+                                        <Button Text="Editar" Clicked="OnEditarClicked" CommandParameter="{Binding .}"
+                                                BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource ChipBgDark}}"
+                                                TextColor="{AppThemeBinding Light=#0F172A, Dark={StaticResource TextPrimary}}"
+                                                FontFamily="PoppinsSemiBold" FontSize="12"
+                                                CornerRadius="10" HeightRequest="32" Padding="10,0"
                                                 IsVisible="{x:Static local:Sesion.EsAdmin}" />
-                                        <Button Text="🗑️" Clicked="OnEliminarClicked" CommandParameter="{Binding .}"
+                                        <Button Text="Eliminar" Clicked="OnEliminarClicked" CommandParameter="{Binding .}"
                                                 Background="Transparent" TextColor="#F87171"
-                                                FontFamily="PoppinsSemiBold" FontSize="14"
-                                                CornerRadius="12" HeightRequest="36" WidthRequest="36" Padding="0"
+                                                FontFamily="PoppinsSemiBold" FontSize="12"
+                                                CornerRadius="10" HeightRequest="32" Padding="10,0"
                                                 IsVisible="{x:Static local:Sesion.EsAdmin}" />
                                     </HorizontalStackLayout>
                                 </Grid>
@@ -130,7 +134,7 @@
                             Background="{StaticResource BrushDanger}"
                             StrokeThickness="0" StrokeShape="RoundRectangle 20"
                             HorizontalOptions="Center">
-                        <Label Text="🗑️" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        <Label Text="✕" FontSize="30" TextColor="White" FontFamily="PoppinsBold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     </Border>
                     <Label Text="¿Eliminar registro?" Style="{StaticResource LabelHeader}"
                            FontSize="19" HorizontalTextAlignment="Center" />

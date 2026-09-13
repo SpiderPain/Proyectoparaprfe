@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Postgrest.Attributes;
 using Postgrest.Models;
 
@@ -24,5 +25,6 @@ public class DocumentoModel : BaseModel
     [Column("fecha_vencimiento")]
     public DateTime? FechaVencimiento { get; set; }
 
+    [JsonIgnore]
     public string AutobusLabel { get; set; } = string.Empty;
 }

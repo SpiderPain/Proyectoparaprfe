@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Postgrest.Attributes;
 using Postgrest.Models;
 
@@ -33,5 +34,6 @@ public class OperadorModel : BaseModel
     [Column("rol")]
     public string Rol { get; set; } = string.Empty;
 
+    [JsonIgnore]
     public string NombreCompleto => $"{Nombre} {Apellido}".Trim();
 }
